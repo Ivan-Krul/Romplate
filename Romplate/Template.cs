@@ -67,7 +67,24 @@ namespace Romplate
 		private List<LessonBunch>[] NameIndexes;
 
 		public int Count { get; private set; }
-		public int CurrentDay { get; set; }
+		private int currentDay = 9;
+		public int CurrentDay
+		{
+			set
+			{
+				currentDay = value;	
+				calculateCount();
+			}
+			get
+			{
+				return currentDay;
+			}
+		}
+
+		private void calculateCount()
+		{
+			Count = NameIndexes[currentDay].Count;
+		}
 
 		public Template() {
 			NameIndexes = new List<LessonBunch>[7];
@@ -77,7 +94,6 @@ namespace Romplate
 			}
 
 			CurrentDay = 0;
-
 		}
 
 		public Template(List<LessonBunch>[] nameIndexes)
@@ -88,36 +104,40 @@ namespace Romplate
 
 		public void CreateLesson()
 		{
-			NameIndexes[CurrentDay].Add(new LessonBunch { Name = "New Lesson" });
+			NameIndexes[currentDay].Add(new LessonBunch { Name = "New Lesson" });
+			calculateCount();
 		}
 
 		public void DeleteLesson(int index)
 		{
-			NameIndexes[CurrentDay].RemoveAt(index);
+			NameIndexes[currentDay].RemoveAt(index);
+			calculateCount();
 		}
 
 		public string GetName(int index)
 		{
-			return NameIndexes[CurrentDay][index].Name;
+			return NameIndexes[currentDay][index].Name;
 		}
 
 		public string GetLink(int index)
 		{
-			return NameIndexes[CurrentDay][index].Link;
+			return NameIndexes[currentDay][index].Link;
 		}
 
 		public void SetName(int index, string name)
 		{
-			var lesson = NameIndexes[CurrentDay][index];
+			var lesson = NameIndexes[currentDay][index];
 			lesson.Name = name;
 			NameIndexes[CurrentDay][index] = lesson;
+			calculateCount();
 		}
 
 		public void SetLink(int index, string link)
 		{
-			var lesson = NameIndexes[CurrentDay][index];
+			var lesson = NameIndexes[currentDay][index];
 			lesson.Link = link;
 			NameIndexes[CurrentDay][index] = lesson;
+			calculateCount();
 		}
 	}
 }

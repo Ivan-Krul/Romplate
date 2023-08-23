@@ -34,5 +34,17 @@ namespace Romplate
 		{
 			days[day] = dayInstance;
 		}
+
+		public bool IsEmpty()
+		{
+			bool isEmpty = true;
+			foreach(var day in days)
+			{
+				if (!(isEmpty = day.IsEmpty()))
+					break;
+			}
+
+			return isEmpty;
+		}
 	}
 }

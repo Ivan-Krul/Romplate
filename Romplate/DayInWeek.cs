@@ -21,11 +21,22 @@ namespace Romplate
 			Count = 0;
 		}
 
-		public DayInWeek(List<Homework> lessons)
+		public DayInWeek(List<Homework> homeworks)
 		{
-			this.homeworks = lessons;
+			this.homeworks = homeworks;
 			Notation = "";
 			Count = this.homeworks.Count;
+		}
+
+		public DayInWeek(int count)
+		{
+			Notation = "";
+			homeworks = new List<Homework>();
+			for(int i = 0; i < count; i++)
+			{
+				homeworks.Add(new Homework());
+			}
+			Count = homeworks.Count;
 		}
 
 		public void CreateHomework()
@@ -48,6 +59,18 @@ namespace Romplate
 		public void ModifyHomework(int id, Homework lesson)
 		{
 			homeworks[id] = lesson;
+		}
+
+		public bool IsEmpty()
+		{
+			bool isEmpty = true;
+			foreach (var homework in homeworks)
+			{
+				if (!(isEmpty = homework.IsEmpty()))
+					break;
+			}
+
+			return isEmpty;
 		}
 	}
 }

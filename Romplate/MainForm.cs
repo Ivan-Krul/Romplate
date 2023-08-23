@@ -201,5 +201,27 @@ namespace Romplate
 
 			dialogAbout.ShowDialog();
 		}
+
+		private void menuItemNewContentPage_Click(object sender, EventArgs e)
+		{
+			if (currentContent.IsEmpty())
+				return;
+
+			var res = MessageBox.Show("Do you want to reset content?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			if (res.ToString() == "Yes")
+			{
+				var curDay = currentTemplate.CurrentDay;
+
+				currentContent = new ContentPage();
+
+				for (int i = 0; i < 7; i++)
+				{
+					currentTemplate.CurrentDay = i;
+					var day = new DayInWeek(currentTemplate.Count);
+					currentContent.SetDay(currentTemplate.CurrentDay, day);
+				}
+				currentTemplate.CurrentDay = curDay;
+			}
+		}
 	}
 }

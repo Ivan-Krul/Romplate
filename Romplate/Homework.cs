@@ -21,5 +21,10 @@ namespace Romplate
 		{
 			IsDone = true;
 		}
+
+		public bool IsEmpty()
+		{
+			return HomeworkInstance.Length == 0;
+		}
 	}
 }

@@ -38,7 +38,7 @@
 			menuStrip = new MenuStrip();
 			fileToolStripMenuItem = new ToolStripMenuItem();
 			newToolStripMenuItem = new ToolStripMenuItem();
-			weekToolStripMenuItem = new ToolStripMenuItem();
+			menuItemNewContentPage = new ToolStripMenuItem();
 			templateToolStripMenuItem = new ToolStripMenuItem();
 			saveToolStripMenuItem = new ToolStripMenuItem();
 			weekToolStripMenuItem2 = new ToolStripMenuItem();
@@ -150,28 +150,29 @@
 			// 
 			// newToolStripMenuItem
 			// 
-			newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { weekToolStripMenuItem, templateToolStripMenuItem });
+			newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemNewContentPage, templateToolStripMenuItem });
 			newToolStripMenuItem.Name = "newToolStripMenuItem";
-			newToolStripMenuItem.Size = new Size(103, 22);
+			newToolStripMenuItem.Size = new Size(180, 22);
 			newToolStripMenuItem.Text = "New";
 			// 
-			// weekToolStripMenuItem
+			// menuItemNewContentPage
 			// 
-			weekToolStripMenuItem.Name = "weekToolStripMenuItem";
-			weekToolStripMenuItem.Size = new Size(146, 22);
-			weekToolStripMenuItem.Text = "Content Page";
+			menuItemNewContentPage.Name = "menuItemNewContentPage";
+			menuItemNewContentPage.Size = new Size(180, 22);
+			menuItemNewContentPage.Text = "Content Page";
+			menuItemNewContentPage.Click += menuItemNewContentPage_Click;
 			// 
 			// templateToolStripMenuItem
 			// 
 			templateToolStripMenuItem.Name = "templateToolStripMenuItem";
-			templateToolStripMenuItem.Size = new Size(146, 22);
+			templateToolStripMenuItem.Size = new Size(180, 22);
 			templateToolStripMenuItem.Text = "Template";
 			// 
 			// saveToolStripMenuItem
 			// 
 			saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { weekToolStripMenuItem2, templateToolStripMenuItem2 });
 			saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			saveToolStripMenuItem.Size = new Size(103, 22);
+			saveToolStripMenuItem.Size = new Size(180, 22);
 			saveToolStripMenuItem.Text = "Open";
 			// 
 			// weekToolStripMenuItem2
@@ -190,7 +191,7 @@
 			// 
 			openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { weekToolStripMenuItem1, templateToolStripMenuItem1 });
 			openToolStripMenuItem.Name = "openToolStripMenuItem";
-			openToolStripMenuItem.Size = new Size(103, 22);
+			openToolStripMenuItem.Size = new Size(180, 22);
 			openToolStripMenuItem.Text = "Save";
 			// 
 			// weekToolStripMenuItem1
@@ -208,7 +209,7 @@
 			// exitToolStripMenuItem
 			// 
 			exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			exitToolStripMenuItem.Size = new Size(103, 22);
+			exitToolStripMenuItem.Size = new Size(180, 22);
 			exitToolStripMenuItem.Text = "Exit";
 			exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
 			// 
@@ -400,7 +401,7 @@
 		private ToolStripMenuItem exitToolStripMenuItem;
 		private ToolStripMenuItem aboutToolStripMenuItem;
 		private ToolStripMenuItem templateToolStripMenuItem;
-		private ToolStripMenuItem weekToolStripMenuItem;
+		private ToolStripMenuItem menuItemNewContentPage;
 		private ToolStripMenuItem weekToolStripMenuItem1;
 		private ToolStripMenuItem templateToolStripMenuItem1;
 		private OpenFileDialog openFileDialog;
