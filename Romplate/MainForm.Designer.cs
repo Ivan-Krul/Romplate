@@ -41,8 +41,9 @@
 			menuItemNewContentPage = new ToolStripMenuItem();
 			templateToolStripMenuItem = new ToolStripMenuItem();
 			saveToolStripMenuItem = new ToolStripMenuItem();
-			weekToolStripMenuItem2 = new ToolStripMenuItem();
+			menuItemOpenContentPage = new ToolStripMenuItem();
 			templateToolStripMenuItem2 = new ToolStripMenuItem();
+			menuItemRename = new ToolStripMenuItem();
 			openToolStripMenuItem = new ToolStripMenuItem();
 			weekToolStripMenuItem1 = new ToolStripMenuItem();
 			templateToolStripMenuItem1 = new ToolStripMenuItem();
@@ -58,6 +59,7 @@
 			labelHomeworkSign = new Label();
 			textBoxHomework = new TextBox();
 			tableLayoutPanel1 = new TableLayoutPanel();
+			labelContentName = new Label();
 			tableLayoutPanel2 = new TableLayoutPanel();
 			tableLayoutPanel3 = new TableLayoutPanel();
 			((System.ComponentModel.ISupportInitialize)numericUpDownWeekDays).BeginInit();
@@ -73,9 +75,9 @@
 			listBoxLessons.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
 			listBoxLessons.FormattingEnabled = true;
 			listBoxLessons.ItemHeight = 15;
-			listBoxLessons.Location = new Point(3, 3);
+			listBoxLessons.Location = new Point(3, 31);
 			listBoxLessons.Name = "listBoxLessons";
-			listBoxLessons.Size = new Size(190, 319);
+			listBoxLessons.Size = new Size(190, 289);
 			listBoxLessons.TabIndex = 0;
 			listBoxLessons.SelectedIndexChanged += listBoxLessons_SelectedIndexChanged;
 			// 
@@ -143,7 +145,7 @@
 			// 
 			// fileToolStripMenuItem
 			// 
-			fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, saveToolStripMenuItem, openToolStripMenuItem, exitToolStripMenuItem });
+			fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, saveToolStripMenuItem, menuItemRename, openToolStripMenuItem, exitToolStripMenuItem });
 			fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			fileToolStripMenuItem.Size = new Size(37, 20);
 			fileToolStripMenuItem.Text = "File";
@@ -152,35 +154,36 @@
 			// 
 			newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemNewContentPage, templateToolStripMenuItem });
 			newToolStripMenuItem.Name = "newToolStripMenuItem";
-			newToolStripMenuItem.Size = new Size(180, 22);
+			newToolStripMenuItem.Size = new Size(192, 22);
 			newToolStripMenuItem.Text = "New";
 			// 
 			// menuItemNewContentPage
 			// 
 			menuItemNewContentPage.Name = "menuItemNewContentPage";
-			menuItemNewContentPage.Size = new Size(180, 22);
+			menuItemNewContentPage.Size = new Size(146, 22);
 			menuItemNewContentPage.Text = "Content Page";
 			menuItemNewContentPage.Click += menuItemNewContentPage_Click;
 			// 
 			// templateToolStripMenuItem
 			// 
 			templateToolStripMenuItem.Name = "templateToolStripMenuItem";
-			templateToolStripMenuItem.Size = new Size(180, 22);
+			templateToolStripMenuItem.Size = new Size(146, 22);
 			templateToolStripMenuItem.Text = "Template";
 			templateToolStripMenuItem.Click += templateToolStripMenuItem_Click;
 			// 
 			// saveToolStripMenuItem
 			// 
-			saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { weekToolStripMenuItem2, templateToolStripMenuItem2 });
+			saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemOpenContentPage, templateToolStripMenuItem2 });
 			saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			saveToolStripMenuItem.Size = new Size(180, 22);
+			saveToolStripMenuItem.Size = new Size(192, 22);
 			saveToolStripMenuItem.Text = "Open";
 			// 
-			// weekToolStripMenuItem2
+			// menuItemOpenContentPage
 			// 
-			weekToolStripMenuItem2.Name = "weekToolStripMenuItem2";
-			weekToolStripMenuItem2.Size = new Size(146, 22);
-			weekToolStripMenuItem2.Text = "Content Page";
+			menuItemOpenContentPage.Name = "menuItemOpenContentPage";
+			menuItemOpenContentPage.Size = new Size(146, 22);
+			menuItemOpenContentPage.Text = "Content Page";
+			menuItemOpenContentPage.Click += menuItemOpenContentPage_Click;
 			// 
 			// templateToolStripMenuItem2
 			// 
@@ -188,11 +191,18 @@
 			templateToolStripMenuItem2.Size = new Size(146, 22);
 			templateToolStripMenuItem2.Text = "Template";
 			// 
+			// menuItemRename
+			// 
+			menuItemRename.Name = "menuItemRename";
+			menuItemRename.Size = new Size(192, 22);
+			menuItemRename.Text = "Rename Content Page";
+			menuItemRename.Click += menuItemRename_Click;
+			// 
 			// openToolStripMenuItem
 			// 
 			openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { weekToolStripMenuItem1, templateToolStripMenuItem1 });
 			openToolStripMenuItem.Name = "openToolStripMenuItem";
-			openToolStripMenuItem.Size = new Size(180, 22);
+			openToolStripMenuItem.Size = new Size(192, 22);
 			openToolStripMenuItem.Text = "Save";
 			// 
 			// weekToolStripMenuItem1
@@ -210,7 +220,7 @@
 			// exitToolStripMenuItem
 			// 
 			exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			exitToolStripMenuItem.Size = new Size(180, 22);
+			exitToolStripMenuItem.Size = new Size(192, 22);
 			exitToolStripMenuItem.Text = "Exit";
 			exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
 			// 
@@ -313,17 +323,29 @@
 			tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
 			tableLayoutPanel1.ColumnCount = 1;
 			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.Controls.Add(numericUpDownWeekDays, 0, 2);
-			tableLayoutPanel1.Controls.Add(listBoxLessons, 0, 0);
-			tableLayoutPanel1.Controls.Add(labelDayWeek, 0, 1);
+			tableLayoutPanel1.Controls.Add(numericUpDownWeekDays, 0, 3);
+			tableLayoutPanel1.Controls.Add(labelDayWeek, 0, 2);
+			tableLayoutPanel1.Controls.Add(listBoxLessons, 0, 1);
+			tableLayoutPanel1.Controls.Add(labelContentName, 0, 0);
 			tableLayoutPanel1.Location = new Point(4, 37);
 			tableLayoutPanel1.Name = "tableLayoutPanel1";
-			tableLayoutPanel1.RowCount = 3;
+			tableLayoutPanel1.RowCount = 4;
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
 			tableLayoutPanel1.Size = new Size(200, 382);
 			tableLayoutPanel1.TabIndex = 11;
+			// 
+			// labelContentName
+			// 
+			labelContentName.AutoSize = true;
+			labelContentName.Location = new Point(3, 0);
+			labelContentName.Name = "labelContentName";
+			labelContentName.Size = new Size(106, 15);
+			labelContentName.TabIndex = 3;
+			labelContentName.Text = "New Content Page";
 			// 
 			// tableLayoutPanel2
 			// 
@@ -417,7 +439,9 @@
 		private TableLayoutPanel tableLayoutPanel1;
 		private TableLayoutPanel tableLayoutPanel2;
 		private TableLayoutPanel tableLayoutPanel3;
-		private ToolStripMenuItem weekToolStripMenuItem2;
+		private ToolStripMenuItem menuItemOpenContentPage;
 		private ToolStripMenuItem templateToolStripMenuItem2;
+		private Label labelContentName;
+		private ToolStripMenuItem menuItemRename;
 	}
 }

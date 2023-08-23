@@ -10,6 +10,8 @@ namespace Romplate
 	{
 		private DayInWeek[] days;
 
+		public string Name { get; set; } = "New Content Page";
+
 		public ContentPage()
 		{
 			days = new DayInWeek[7];

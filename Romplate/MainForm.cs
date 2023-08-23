@@ -16,6 +16,8 @@ namespace Romplate
 			{
 				listBoxLessons.Items.Add(currentTemplate.GetName(i));
 			}
+
+			labelContentName.Text = currentContent.Name;
 		}
 
 		private void turnAdditionalButtons()
@@ -238,6 +240,31 @@ namespace Romplate
 			turnAdditionalButtons();
 			updateListBox();
 			updateCheckBox(false);
+		}
+
+		private void menuItemOpenContentPage_Click(object sender, EventArgs e)
+		{
+			openFileDialog.AddExtension = true;
+			openFileDialog.CheckPathExists = true;
+			openFileDialog.CheckFileExists = true;
+			openFileDialog.Multiselect = false;
+			openFileDialog.DefaultExt = "rmcp";
+			openFileDialog.FileName = currentContent.Name;
+			openFileDialog.Filter = "Rompacter Content Page files (*.rmcp)|*.rmcp|All files (*.*)|*.*";
+
+			openFileDialog.ShowDialog();
+		}
+
+		private void menuItemRename_Click(object sender, EventArgs e)
+		{
+			FormRenameContentPageHelpers.Name = currentContent.Name;
+			var form = new FormRenameContentPage();
+			form.ShowDialog();
+
+			while (!FormRenameContentPageHelpers.IsClosed) ;
+
+			currentContent.Name = FormRenameContentPageHelpers.Name;
+			updateListBox();
 		}
 	}
 }
