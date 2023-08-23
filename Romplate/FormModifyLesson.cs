@@ -17,7 +17,7 @@ namespace Romplate
 			InitializeComponent();
 
 			textBoxHomework.Text = FormModifyLessonHelpers.TransferedLesson.Homework;
-			textBoxLink.Text = FormModifyLessonHelpers.TransferedLesson.Link;
+			textBoxLink.Text = FormModifyLessonHelpers.Link;
 			textBoxName.Text = FormModifyLessonHelpers.Name;
 			FormModifyLessonHelpers.IsClosed = false;
 		}
@@ -31,7 +31,7 @@ namespace Romplate
 		private void buttonApply_Click(object sender, EventArgs e)
 		{
 			FormModifyLessonHelpers.TransferedLesson.Homework = textBoxHomework.Text;
-			FormModifyLessonHelpers.TransferedLesson.Link = textBoxLink.Text;
+			FormModifyLessonHelpers.Link = textBoxLink.Text;
 			FormModifyLessonHelpers.Name = textBoxName.Text;
 			Close();
 			FormModifyLessonHelpers.IsClosed = true;

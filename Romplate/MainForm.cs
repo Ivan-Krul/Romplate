@@ -14,7 +14,7 @@ namespace Romplate
 			listBoxLessons.Items.Clear();
 			for (int i = 0; i < day.Count; i++)
 			{
-				listBoxLessons.Items.Add(currentTemplate.GetName(day.GetLessonNameID(i)));
+				listBoxLessons.Items.Add(currentTemplate.GetName(i));
 			}
 		}
 
@@ -28,7 +28,7 @@ namespace Romplate
 			if (choice != -1)
 			{
 				textBoxHomework.Text = currentWeek.GetDay(currentTemplate.CurrentDay).GetLesson(choice).Homework;
-				buttonGoToMeet.Enabled = currentWeek.GetDay(currentTemplate.CurrentDay).GetLesson(choice).Link != string.Empty;
+				buttonGoToMeet.Enabled = currentTemplate.GetLink(choice) != string.Empty;
 			}
 			else
 				textBoxHomework.Text = "";
@@ -45,7 +45,6 @@ namespace Romplate
 		{
 			currentWeek = new Week();
 			currentTemplate = new Template();
-			currentTemplate.AddName("New Lesson");
 
 			InitializeComponent();
 
@@ -88,6 +87,7 @@ namespace Romplate
 					break;
 			}
 			updateListBox();
+			turnAdditionalButtons();
 			textBoxNotation.Text = currentWeek.GetDay(currentTemplate.CurrentDay).Notation;
 		}
 
@@ -96,7 +96,10 @@ namespace Romplate
 			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
 			day.CreateLesson();
 			currentWeek.SetDay(currentTemplate.CurrentDay, day);
+
+			currentTemplate.CreateLesson();
 			updateListBox();
+			turnAdditionalButtons();
 		}
 
 		private void buttonDeleteLesson_Click(object sender, EventArgs e)
@@ -106,6 +109,7 @@ namespace Romplate
 			if (choice != -1)
 			{
 				day.DeleteLesson(choice);
+				currentTemplate.DeleteLesson(choice);
 				currentWeek.SetDay(currentTemplate.CurrentDay, day);
 			}
 
@@ -156,13 +160,10 @@ namespace Romplate
 		{
 			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
 			var lesson = FormModifyLessonHelpers.TransferedLesson;
-			var index = currentTemplate.GetIndex(FormModifyLessonHelpers.Name);
-			if (index == -1)
-			{
-				currentTemplate.AddName(FormModifyLessonHelpers.Name);
-				index = currentTemplate.GetIndex(FormModifyLessonHelpers.Name);
-			}
-			day.ModifyLesson(listBoxLessons.SelectedIndex, index, lesson);
+			var index = listBoxLessons.SelectedIndex;
+			currentTemplate.SetName(index, FormModifyLessonHelpers.Name);
+			currentTemplate.SetLink(index, FormModifyLessonHelpers.Link);
+			day.ModifyLesson(index, lesson);
 			updateListBox();
 			updateCheckBox(true);
 			turnAdditionalButtons();
@@ -173,8 +174,10 @@ namespace Romplate
 		{
 			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
 			var lesson = day.GetLesson(listBoxLessons.SelectedIndex);
+			var index = listBoxLessons.SelectedIndex;
 			FormModifyLessonHelpers.TransferedLesson = lesson;
-			FormModifyLessonHelpers.Name = currentTemplate.GetName(day.GetLessonNameID(listBoxLessons.SelectedIndex));
+			FormModifyLessonHelpers.Name = currentTemplate.GetName(index);
+			FormModifyLessonHelpers.Link = currentTemplate.GetLink(index);
 			FormModifyLesson formModifyLesson = new FormModifyLesson();
 			formModifyLesson.ShowDialog();
 
@@ -189,10 +192,7 @@ namespace Romplate
 			if (listBoxLessons.SelectedIndex == -1)
 				return;
 
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
-			var lesson = day.GetLesson(listBoxLessons.SelectedIndex);
-
-			Process.Start("cmd.exe", "/c \"start " + lesson.Link + "\"");
+			Process.Start("cmd.exe", "/c \"start " + currentTemplate.GetLink(listBoxLessons.SelectedIndex) + "\"");
 		}
 	}
 }

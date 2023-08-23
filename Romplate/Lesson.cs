@@ -9,13 +9,11 @@ namespace Romplate
 	internal class Lesson
 	{
 		public string Homework { get; set; }
-		public string Link { get; set; }
 		public bool IsDone { get; private set; }
 
 		public Lesson()
 		{
 			Homework = "";
-			Link = "";
 			IsDone = false;
 		}
 
