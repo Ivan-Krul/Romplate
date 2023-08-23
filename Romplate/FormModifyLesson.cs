@@ -15,6 +15,27 @@ namespace Romplate
 		public FormModifyLesson()
 		{
 			InitializeComponent();
+
+			textBoxHomework.Text = FormModifyLessonHelpers.TransferedLesson.Homework;
+			textBoxLink.Text = FormModifyLessonHelpers.TransferedLesson.Link;
+			textBoxName.Text = FormModifyLessonHelpers.Name;
+			FormModifyLessonHelpers.IsClosed = false;
+		}
+
+		private void buttonCancel_Click(object sender, EventArgs e)
+		{
+			Close();
+			FormModifyLessonHelpers.IsClosed = true;
+		}
+
+		private void buttonApply_Click(object sender, EventArgs e)
+		{
+			FormModifyLessonHelpers.TransferedLesson.Homework = textBoxHomework.Text;
+			FormModifyLessonHelpers.TransferedLesson.Link = textBoxLink.Text;
+			FormModifyLessonHelpers.Name = textBoxName.Text;
+			Close();
+			FormModifyLessonHelpers.IsClosed = true;
 		}
 	}
 }
+

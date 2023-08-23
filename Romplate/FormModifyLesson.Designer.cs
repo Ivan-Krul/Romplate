@@ -29,27 +29,27 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormModifyLesson));
-			textBox1 = new TextBox();
+			textBoxName = new TextBox();
 			label1 = new Label();
 			label2 = new Label();
-			textBox2 = new TextBox();
-			textBox3 = new TextBox();
+			textBoxHomework = new TextBox();
+			textBoxLink = new TextBox();
 			labelLink = new Label();
 			tableLayoutPanel1 = new TableLayoutPanel();
-			buttonCancel = new Button();
 			buttonApply = new Button();
+			buttonCancel = new Button();
 			tableLayoutPanel2 = new TableLayoutPanel();
 			tableLayoutPanel1.SuspendLayout();
 			tableLayoutPanel2.SuspendLayout();
 			SuspendLayout();
 			// 
-			// textBox1
+			// textBoxName
 			// 
-			textBox1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-			textBox1.Location = new Point(3, 23);
-			textBox1.Name = "textBox1";
-			textBox1.Size = new Size(290, 23);
-			textBox1.TabIndex = 0;
+			textBoxName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+			textBoxName.Location = new Point(3, 23);
+			textBoxName.Name = "textBoxName";
+			textBoxName.Size = new Size(290, 23);
+			textBoxName.TabIndex = 0;
 			// 
 			// label1
 			// 
@@ -69,23 +69,23 @@
 			label2.TabIndex = 3;
 			label2.Text = "Homework";
 			// 
-			// textBox2
+			// textBoxHomework
 			// 
-			textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-			textBox2.Location = new Point(3, 71);
-			textBox2.Multiline = true;
-			textBox2.Name = "textBox2";
-			textBox2.Size = new Size(290, 77);
-			textBox2.TabIndex = 2;
+			textBoxHomework.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			textBoxHomework.Location = new Point(3, 71);
+			textBoxHomework.Multiline = true;
+			textBoxHomework.Name = "textBoxHomework";
+			textBoxHomework.Size = new Size(290, 77);
+			textBoxHomework.TabIndex = 2;
 			// 
-			// textBox3
+			// textBoxLink
 			// 
-			textBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-			textBox3.Location = new Point(3, 174);
-			textBox3.Multiline = true;
-			textBox3.Name = "textBox3";
-			textBox3.Size = new Size(290, 77);
-			textBox3.TabIndex = 4;
+			textBoxLink.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			textBoxLink.Location = new Point(3, 174);
+			textBoxLink.Multiline = true;
+			textBoxLink.Name = "textBoxLink";
+			textBoxLink.Size = new Size(290, 77);
+			textBoxLink.TabIndex = 4;
 			// 
 			// labelLink
 			// 
@@ -111,16 +111,6 @@
 			tableLayoutPanel1.Size = new Size(290, 42);
 			tableLayoutPanel1.TabIndex = 6;
 			// 
-			// buttonCancel
-			// 
-			buttonCancel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-			buttonCancel.Location = new Point(3, 3);
-			buttonCancel.Name = "buttonCancel";
-			buttonCancel.Size = new Size(139, 36);
-			buttonCancel.TabIndex = 0;
-			buttonCancel.Text = "Cancel";
-			buttonCancel.UseVisualStyleBackColor = true;
-			// 
 			// buttonApply
 			// 
 			buttonApply.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -130,6 +120,18 @@
 			buttonApply.TabIndex = 1;
 			buttonApply.Text = "Apply";
 			buttonApply.UseVisualStyleBackColor = true;
+			buttonApply.Click += buttonApply_Click;
+			// 
+			// buttonCancel
+			// 
+			buttonCancel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			buttonCancel.Location = new Point(3, 3);
+			buttonCancel.Name = "buttonCancel";
+			buttonCancel.Size = new Size(139, 36);
+			buttonCancel.TabIndex = 0;
+			buttonCancel.Text = "Cancel";
+			buttonCancel.UseVisualStyleBackColor = true;
+			buttonCancel.Click += buttonCancel_Click;
 			// 
 			// tableLayoutPanel2
 			// 
@@ -138,11 +140,11 @@
 			tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 			tableLayoutPanel2.Controls.Add(label1, 0, 0);
 			tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 0, 6);
-			tableLayoutPanel2.Controls.Add(textBox1, 0, 1);
-			tableLayoutPanel2.Controls.Add(textBox3, 0, 5);
+			tableLayoutPanel2.Controls.Add(textBoxName, 0, 1);
+			tableLayoutPanel2.Controls.Add(textBoxLink, 0, 5);
 			tableLayoutPanel2.Controls.Add(labelLink, 0, 4);
 			tableLayoutPanel2.Controls.Add(label2, 0, 2);
-			tableLayoutPanel2.Controls.Add(textBox2, 0, 3);
+			tableLayoutPanel2.Controls.Add(textBoxHomework, 0, 3);
 			tableLayoutPanel2.Location = new Point(12, 12);
 			tableLayoutPanel2.Name = "tableLayoutPanel2";
 			tableLayoutPanel2.RowCount = 7;
@@ -173,11 +175,11 @@
 
 		#endregion
 
-		private TextBox textBox1;
+		private TextBox textBoxName;
 		private Label label1;
 		private Label label2;
-		private TextBox textBox2;
-		private TextBox textBox3;
+		private TextBox textBoxHomework;
+		private TextBox textBoxLink;
 		private Label labelLink;
 		private TableLayoutPanel tableLayoutPanel1;
 		private Button buttonCancel;

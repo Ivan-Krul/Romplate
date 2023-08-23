@@ -251,6 +251,7 @@
 			buttonGoToMeet.TabIndex = 5;
 			buttonGoToMeet.Text = "Go to meet";
 			buttonGoToMeet.UseVisualStyleBackColor = true;
+			buttonGoToMeet.Click += buttonGoToMeet_Click;
 			// 
 			// buttonDeleteLesson
 			// 
@@ -272,6 +273,7 @@
 			buttonModifyLesson.TabIndex = 2;
 			buttonModifyLesson.Text = "Modify Lesson";
 			buttonModifyLesson.UseVisualStyleBackColor = true;
+			buttonModifyLesson.Click += buttonModifyLesson_Click;
 			// 
 			// buttonCreateLesson
 			// 

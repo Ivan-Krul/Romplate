@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Romplate
@@ -24,6 +25,14 @@ namespace Romplate
 			buttonModifyLesson.Enabled = choice != -1;
 			buttonGoToMeet.Enabled = choice != -1;
 			textBoxNotation.Enabled = choice != -1;
+			if (choice != -1)
+			{
+				textBoxHomework.Text = currentWeek.GetDay(currentTemplate.CurrentDay).GetLesson(choice).Homework;
+				buttonGoToMeet.Enabled = currentWeek.GetDay(currentTemplate.CurrentDay).GetLesson(choice).Link != string.Empty;
+			}
+			else
+				textBoxHomework.Text = "";
+
 			updateCheckBox(false);
 		}
 
@@ -141,6 +150,49 @@ namespace Romplate
 			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
 			day.Notation = textBoxNotation.Text;
 			currentWeek.SetDay(currentTemplate.CurrentDay, day);
+		}
+
+		private void handleClosingFormClosingEventHandler()
+		{
+			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
+			var lesson = FormModifyLessonHelpers.TransferedLesson;
+			var index = currentTemplate.GetIndex(FormModifyLessonHelpers.Name);
+			if (index == -1)
+			{
+				currentTemplate.AddName(FormModifyLessonHelpers.Name);
+				index = currentTemplate.GetIndex(FormModifyLessonHelpers.Name);
+			}
+			day.ModifyLesson(listBoxLessons.SelectedIndex, index, lesson);
+			updateListBox();
+			updateCheckBox(true);
+			turnAdditionalButtons();
+			textBoxHomework.Text = lesson.Homework;
+		}
+
+		private void buttonModifyLesson_Click(object sender, EventArgs e)
+		{
+			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
+			var lesson = day.GetLesson(listBoxLessons.SelectedIndex);
+			FormModifyLessonHelpers.TransferedLesson = lesson;
+			FormModifyLessonHelpers.Name = currentTemplate.GetName(day.GetLessonNameID(listBoxLessons.SelectedIndex));
+			FormModifyLesson formModifyLesson = new FormModifyLesson();
+			formModifyLesson.ShowDialog();
+
+			while (!FormModifyLessonHelpers.IsClosed) ;
+
+			handleClosingFormClosingEventHandler();
+
+		}
+
+		private void buttonGoToMeet_Click(object sender, EventArgs e)
+		{
+			if (listBoxLessons.SelectedIndex == -1)
+				return;
+
+			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
+			var lesson = day.GetLesson(listBoxLessons.SelectedIndex);
+
+			Process.Start("cmd.exe", "/c \"start " + lesson.Link + "\"");
 		}
 	}
 }
