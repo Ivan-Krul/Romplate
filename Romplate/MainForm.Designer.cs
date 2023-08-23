@@ -158,13 +158,13 @@
 			// weekToolStripMenuItem
 			// 
 			weekToolStripMenuItem.Name = "weekToolStripMenuItem";
-			weekToolStripMenuItem.Size = new Size(122, 22);
-			weekToolStripMenuItem.Text = "Week";
+			weekToolStripMenuItem.Size = new Size(146, 22);
+			weekToolStripMenuItem.Text = "Content Page";
 			// 
 			// templateToolStripMenuItem
 			// 
 			templateToolStripMenuItem.Name = "templateToolStripMenuItem";
-			templateToolStripMenuItem.Size = new Size(122, 22);
+			templateToolStripMenuItem.Size = new Size(146, 22);
 			templateToolStripMenuItem.Text = "Template";
 			// 
 			// saveToolStripMenuItem
@@ -177,13 +177,13 @@
 			// weekToolStripMenuItem2
 			// 
 			weekToolStripMenuItem2.Name = "weekToolStripMenuItem2";
-			weekToolStripMenuItem2.Size = new Size(122, 22);
-			weekToolStripMenuItem2.Text = "Week";
+			weekToolStripMenuItem2.Size = new Size(146, 22);
+			weekToolStripMenuItem2.Text = "Content Page";
 			// 
 			// templateToolStripMenuItem2
 			// 
 			templateToolStripMenuItem2.Name = "templateToolStripMenuItem2";
-			templateToolStripMenuItem2.Size = new Size(122, 22);
+			templateToolStripMenuItem2.Size = new Size(146, 22);
 			templateToolStripMenuItem2.Text = "Template";
 			// 
 			// openToolStripMenuItem
@@ -196,13 +196,13 @@
 			// weekToolStripMenuItem1
 			// 
 			weekToolStripMenuItem1.Name = "weekToolStripMenuItem1";
-			weekToolStripMenuItem1.Size = new Size(122, 22);
-			weekToolStripMenuItem1.Text = "Week";
+			weekToolStripMenuItem1.Size = new Size(146, 22);
+			weekToolStripMenuItem1.Text = "Content Page";
 			// 
 			// templateToolStripMenuItem1
 			// 
 			templateToolStripMenuItem1.Name = "templateToolStripMenuItem1";
-			templateToolStripMenuItem1.Size = new Size(122, 22);
+			templateToolStripMenuItem1.Size = new Size(146, 22);
 			templateToolStripMenuItem1.Text = "Template";
 			// 
 			// exitToolStripMenuItem
@@ -214,10 +214,10 @@
 			// 
 			// aboutToolStripMenuItem
 			// 
-			aboutToolStripMenuItem.Enabled = false;
 			aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
 			aboutToolStripMenuItem.Size = new Size(52, 20);
 			aboutToolStripMenuItem.Text = "About";
+			aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
 			// 
 			// openFileDialog
 			// 

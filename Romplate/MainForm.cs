@@ -194,5 +194,12 @@ namespace Romplate
 
 			Process.Start("cmd.exe", "/c \"start " + currentTemplate.GetLink(listBoxLessons.SelectedIndex) + "\"");
 		}
+
+		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var dialogAbout = new AboutBox();
+
+			dialogAbout.ShowDialog();
+		}
 	}
 }
