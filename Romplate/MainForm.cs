@@ -5,12 +5,12 @@ namespace Romplate
 {
 	public partial class MainForm : Form
 	{
-		private Week currentWeek;
+		private ContentPage currentContent;
 		private Template currentTemplate;
 
 		private void updateListBox()
 		{
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
+			var day = currentContent.GetDay(currentTemplate.CurrentDay);
 			listBoxLessons.Items.Clear();
 			for (int i = 0; i < day.Count; i++)
 			{
@@ -27,7 +27,7 @@ namespace Romplate
 			textBoxNotation.Enabled = choice != -1;
 			if (choice != -1)
 			{
-				textBoxHomework.Text = currentWeek.GetDay(currentTemplate.CurrentDay).GetLesson(choice).Homework;
+				textBoxHomework.Text = currentContent.GetDay(currentTemplate.CurrentDay).GetHomework(choice).HomeworkInstance;
 				buttonGoToMeet.Enabled = currentTemplate.GetLink(choice) != string.Empty;
 			}
 			else
@@ -43,7 +43,7 @@ namespace Romplate
 
 		public MainForm()
 		{
-			currentWeek = new Week();
+			currentContent = new ContentPage();
 			currentTemplate = new Template();
 
 			InitializeComponent();
@@ -88,14 +88,14 @@ namespace Romplate
 			}
 			updateListBox();
 			turnAdditionalButtons();
-			textBoxNotation.Text = currentWeek.GetDay(currentTemplate.CurrentDay).Notation;
+			textBoxNotation.Text = currentContent.GetDay(currentTemplate.CurrentDay).Notation;
 		}
 
 		private void buttonCreateLesson_Click(object sender, EventArgs e)
 		{
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
-			day.CreateLesson();
-			currentWeek.SetDay(currentTemplate.CurrentDay, day);
+			var day = currentContent.GetDay(currentTemplate.CurrentDay);
+			day.CreateHomework();
+			currentContent.SetDay(currentTemplate.CurrentDay, day);
 
 			currentTemplate.CreateLesson();
 			updateListBox();
@@ -104,13 +104,13 @@ namespace Romplate
 
 		private void buttonDeleteLesson_Click(object sender, EventArgs e)
 		{
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
+			var day = currentContent.GetDay(currentTemplate.CurrentDay);
 			var choice = listBoxLessons.SelectedIndex;
 			if (choice != -1)
 			{
-				day.DeleteLesson(choice);
+				day.DeleteHomework(choice);
 				currentTemplate.DeleteLesson(choice);
-				currentWeek.SetDay(currentTemplate.CurrentDay, day);
+				currentContent.SetDay(currentTemplate.CurrentDay, day);
 			}
 
 			updateListBox();
@@ -128,11 +128,11 @@ namespace Romplate
 			if (choice == -1)
 				return;
 
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
-			var lesson = day.GetLesson(choice);
+			var day = currentContent.GetDay(currentTemplate.CurrentDay);
+			var homework = day.GetHomework(choice);
 
-			textBoxHomework.Text = lesson.Homework;
-			checkBoxIsDone.Checked = lesson.IsDone;
+			textBoxHomework.Text = homework.HomeworkInstance;
+			checkBoxIsDone.Checked = homework.IsDone;
 			updateCheckBox(true);
 		}
 
@@ -142,8 +142,8 @@ namespace Romplate
 			if (choice == -1)
 				return;
 
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
-			var lesson = day.GetLesson(choice);
+			var day = currentContent.GetDay(currentTemplate.CurrentDay);
+			var lesson = day.GetHomework(choice);
 
 			lesson.MarkDone();
 			updateCheckBox(true);
@@ -151,31 +151,31 @@ namespace Romplate
 
 		private void textBoxNotation_TextChanged(object sender, EventArgs e)
 		{
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
+			var day = currentContent.GetDay(currentTemplate.CurrentDay);
 			day.Notation = textBoxNotation.Text;
-			currentWeek.SetDay(currentTemplate.CurrentDay, day);
+			currentContent.SetDay(currentTemplate.CurrentDay, day);
 		}
 
 		private void handleClosingFormClosingEventHandler()
 		{
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
-			var lesson = FormModifyLessonHelpers.TransferedLesson;
+			var day = currentContent.GetDay(currentTemplate.CurrentDay);
+			var homework = FormModifyLessonHelpers.TransferedHomework;
 			var index = listBoxLessons.SelectedIndex;
 			currentTemplate.SetName(index, FormModifyLessonHelpers.Name);
 			currentTemplate.SetLink(index, FormModifyLessonHelpers.Link);
-			day.ModifyLesson(index, lesson);
+			day.ModifyHomework(index, homework);
 			updateListBox();
 			updateCheckBox(true);
 			turnAdditionalButtons();
-			textBoxHomework.Text = lesson.Homework;
+			textBoxHomework.Text = homework.HomeworkInstance;
 		}
 
 		private void buttonModifyLesson_Click(object sender, EventArgs e)
 		{
-			var day = currentWeek.GetDay(currentTemplate.CurrentDay);
-			var lesson = day.GetLesson(listBoxLessons.SelectedIndex);
+			var day = currentContent.GetDay(currentTemplate.CurrentDay);
+			var homework = day.GetHomework(listBoxLessons.SelectedIndex);
 			var index = listBoxLessons.SelectedIndex;
-			FormModifyLessonHelpers.TransferedLesson = lesson;
+			FormModifyLessonHelpers.TransferedHomework = homework;
 			FormModifyLessonHelpers.Name = currentTemplate.GetName(index);
 			FormModifyLessonHelpers.Link = currentTemplate.GetLink(index);
 			FormModifyLesson formModifyLesson = new FormModifyLesson();

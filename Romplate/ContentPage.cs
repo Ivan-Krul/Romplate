@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Romplate
 {
-	internal class Week
+	internal class ContentPage
 	{
 		private DayInWeek[] days;
 
-		public Week()
+		public ContentPage()
 		{
 			days = new DayInWeek[7];
 			for(int i = 0; i < days.Length; i++)
@@ -20,7 +20,7 @@ namespace Romplate
 
 		}
 
-		public Week(DayInWeek[] days)
+		public ContentPage(DayInWeek[] days)
 		{
 			this.days = days;
 		}

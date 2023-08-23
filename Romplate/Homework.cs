@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Romplate
 {
-	internal class Lesson
+	internal class Homework
 	{
-		public string Homework { get; set; }
+		public string HomeworkInstance { get; set; }
 		public bool IsDone { get; private set; }
 
-		public Lesson()
+		public Homework()
 		{
-			Homework = "";
+			HomeworkInstance = "";
 			IsDone = false;
 		}
 

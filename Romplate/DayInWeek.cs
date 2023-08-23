@@ -9,45 +9,45 @@ namespace Romplate
 {
 	internal class DayInWeek
 	{
-		private List<Lesson> lessons;
+		private List<Homework> homeworks;
 //		private List<int> nameIndexes;
 		public string Notation { get; set; }
 		public int Count { get; set; }
 
 		public DayInWeek()
 		{
-			lessons = new List<Lesson>();
+			homeworks = new List<Homework>();
 			Notation = "";
 			Count = 0;
 		}
 
-		public DayInWeek(List<Lesson> lessons)
+		public DayInWeek(List<Homework> lessons)
 		{
-			this.lessons = lessons;
+			this.homeworks = lessons;
 			Notation = "";
-			Count = this.lessons.Count;
+			Count = this.homeworks.Count;
 		}
 
-		public void CreateLesson()
+		public void CreateHomework()
 		{
-			lessons.Add(new Lesson());
-			Count = this.lessons.Count;
+			homeworks.Add(new Homework());
+			Count = this.homeworks.Count;
 		}
 
-		public void DeleteLesson(int id)
+		public void DeleteHomework(int id)
 		{
-			lessons.RemoveAt(id);
-			Count = this.lessons.Count;
+			homeworks.RemoveAt(id);
+			Count = this.homeworks.Count;
 		}
 
-		public Lesson GetLesson(int id)
+		public Homework GetHomework(int id)
 		{
-			return lessons[id];
+			return homeworks[id];
 		}
 
-		public void ModifyLesson(int id, Lesson lesson)
+		public void ModifyHomework(int id, Homework lesson)
 		{
-			lessons[id] = lesson;
+			homeworks[id] = lesson;
 		}
 	}
 }
