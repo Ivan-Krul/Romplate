@@ -207,21 +207,37 @@ namespace Romplate
 			if (currentContent.IsEmpty())
 				return;
 
-			var res = MessageBox.Show("Do you want to reset content?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-			if (res.ToString() == "Yes")
+			var res = MessageBox.Show("Do you want to reset content\n(erase only homeworks)?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			if (res.ToString() != "Yes")
+				return;
+
+			var curDay = currentTemplate.CurrentDay;
+
+			currentContent = new ContentPage();
+
+			for (int i = 0; i < 7; i++)
 			{
-				var curDay = currentTemplate.CurrentDay;
-
-				currentContent = new ContentPage();
-
-				for (int i = 0; i < 7; i++)
-				{
-					currentTemplate.CurrentDay = i;
-					var day = new DayInWeek(currentTemplate.Count);
-					currentContent.SetDay(currentTemplate.CurrentDay, day);
-				}
-				currentTemplate.CurrentDay = curDay;
+				currentTemplate.CurrentDay = i;
+				var day = new DayInWeek(currentTemplate.Count);
+				currentContent.SetDay(currentTemplate.CurrentDay, day);
 			}
+			currentTemplate.CurrentDay = curDay;
+		}
+
+		private void templateToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (currentTemplate.IsEmpty())
+				return;
+
+			var res = MessageBox.Show("Do you want to reset whole template\n(erase all data)?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			if (res.ToString() != "Yes")
+				return;
+
+			currentTemplate = new Template();
+			currentContent = new ContentPage();
+			turnAdditionalButtons();
+			updateListBox();
+			updateCheckBox(false);
 		}
 	}
 }

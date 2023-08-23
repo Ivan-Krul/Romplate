@@ -167,6 +167,7 @@
 			templateToolStripMenuItem.Name = "templateToolStripMenuItem";
 			templateToolStripMenuItem.Size = new Size(180, 22);
 			templateToolStripMenuItem.Text = "Template";
+			templateToolStripMenuItem.Click += templateToolStripMenuItem_Click;
 			// 
 			// saveToolStripMenuItem
 			// 

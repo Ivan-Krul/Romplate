@@ -139,5 +139,17 @@ namespace Romplate
 			NameIndexes[CurrentDay][index] = lesson;
 			calculateCount();
 		}
+
+		internal bool IsEmpty()
+		{
+			bool isEmpty = true;
+			foreach(var lesson in NameIndexes)
+			{
+				if(!(isEmpty = lesson.Count == 0))
+					break;
+			}
+			
+			return isEmpty;
+		}
 	}
 }
