@@ -14,7 +14,7 @@ namespace Romplate
 
 		public ContentPage()
 		{
-			days = new DayInWeek[7];
+			days = new DayInWeek[Template.DaysInWeek];
 			for(int i = 0; i < days.Length; i++)
 			{
 				days[i] = new DayInWeek();

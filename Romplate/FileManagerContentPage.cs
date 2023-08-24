@@ -8,13 +8,13 @@ namespace Romplate
 {
 	/* 
 	 * Definition:
-	 * &Str(string)
-	 *	{
-	 *		string.Count > c
-	 *		->
-	 *			string[c]
-	 *		<-
-	 *	}
+	 *		&Str(string)
+	 *		{
+	 *			string.Count > c
+	 *			->
+	 *				string[c]
+	 *			<-
+	 *		}
 	 * Structure:
 	 *		&Str(Name)
 	 *		7 > d
@@ -46,7 +46,7 @@ namespace Romplate
 				using (BinaryWriter writer = new BinaryWriter(file))
 				{
 					writer.Write(contentPage.Name);
-					for(int d = 0; d < 7; d++)
+					for(int d = 0; d < Template.DaysInWeek; d++)
 					{
 						writer.Write(contentPage.GetDay(d).Count);
 						for (int h = 0; h < contentPage.GetDay(d).Count; h++)
@@ -72,7 +72,7 @@ namespace Romplate
 				using (BinaryReader reader = new BinaryReader(file))
 				{
 					contentPage.Name = reader.ReadString();
-					for(int d = 0; d < 7; d++)
+					for(int d = 0; d < Template.DaysInWeek; d++)
 					{
 						var day = contentPage.GetDay(d);
 						int homeworkCount = reader.ReadInt32();

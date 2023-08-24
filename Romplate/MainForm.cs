@@ -218,7 +218,7 @@ namespace Romplate
 
 			currentContent = new ContentPage();
 
-			for (int i = 0; i < 7; i++)
+			for (int i = 0; i < Template.DaysInWeek; i++)
 			{
 				currentTemplate.CurrentDay = i;
 				var day = new DayInWeek(currentTemplate.Count);
@@ -294,6 +294,46 @@ namespace Romplate
 		private void OpenFileDialogSaveContentPage_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
 		{
 			FileManagerContentPage.Save(saveFileDialog.FileName, currentContent);
+		}
+
+		private void menuItemSaveTemplate_Click(object sender, EventArgs e)
+		{
+			saveFileDialog.AddExtension = true;
+			saveFileDialog.CheckPathExists = true;
+			saveFileDialog.CheckFileExists = false;
+			saveFileDialog.DefaultExt = "rmtp";
+			saveFileDialog.FileName = currentContent.Name;
+			saveFileDialog.Filter = "Rompacter Template files (*.rmtp)|*.rmtp|All files (*.*)|*.*";
+			saveFileDialog.Title = "Save Template";
+			saveFileDialog.FileOk += OpenFileDialogSaveTemplate_FileOk;
+
+			saveFileDialog.ShowDialog();
+		}
+
+		private void OpenFileDialogSaveTemplate_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
+		{
+			FileManagerTemplate.Save(saveFileDialog.FileName, currentTemplate);
+		}
+
+		private void menuItemOpenTemplate_Click(object sender, EventArgs e)
+		{
+			openFileDialog.AddExtension = true;
+			openFileDialog.CheckPathExists = true;
+			openFileDialog.CheckFileExists = true;
+			openFileDialog.Multiselect = false;
+			openFileDialog.DefaultExt = "rmtp";
+			openFileDialog.FileName = currentContent.Name;
+			openFileDialog.Filter = "Rompacter Template files (*.rmtp)|*.rmtp|All files (*.*)|*.*";
+			openFileDialog.Title = "Open Template";
+			openFileDialog.FileOk += OpenFileDialogOpenTemplate_FileOk;
+
+			openFileDialog.ShowDialog();
+		}
+
+		private void OpenFileDialogOpenTemplate_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
+		{
+			currentTemplate = FileManagerTemplate.Load(openFileDialog.FileName);
+			currentContent = new ContentPage();
 		}
 	}
 }

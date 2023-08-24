@@ -42,11 +42,11 @@
 			templateToolStripMenuItem = new ToolStripMenuItem();
 			saveToolStripMenuItem = new ToolStripMenuItem();
 			menuItemOpenContentPage = new ToolStripMenuItem();
-			templateToolStripMenuItem2 = new ToolStripMenuItem();
+			menuItemOpenTemplate = new ToolStripMenuItem();
 			menuItemRename = new ToolStripMenuItem();
 			openToolStripMenuItem = new ToolStripMenuItem();
 			menuItemSaveContentPage = new ToolStripMenuItem();
-			templateToolStripMenuItem1 = new ToolStripMenuItem();
+			menuItemSaveTemplate = new ToolStripMenuItem();
 			exitToolStripMenuItem = new ToolStripMenuItem();
 			aboutToolStripMenuItem = new ToolStripMenuItem();
 			openFileDialog = new OpenFileDialog();
@@ -173,7 +173,7 @@
 			// 
 			// saveToolStripMenuItem
 			// 
-			saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemOpenContentPage, templateToolStripMenuItem2 });
+			saveToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemOpenContentPage, menuItemOpenTemplate });
 			saveToolStripMenuItem.Name = "saveToolStripMenuItem";
 			saveToolStripMenuItem.Size = new Size(192, 22);
 			saveToolStripMenuItem.Text = "Open";
@@ -181,15 +181,16 @@
 			// menuItemOpenContentPage
 			// 
 			menuItemOpenContentPage.Name = "menuItemOpenContentPage";
-			menuItemOpenContentPage.Size = new Size(146, 22);
+			menuItemOpenContentPage.Size = new Size(180, 22);
 			menuItemOpenContentPage.Text = "Content Page";
 			menuItemOpenContentPage.Click += menuItemOpenContentPage_Click;
 			// 
-			// templateToolStripMenuItem2
+			// menuItemOpenTemplate
 			// 
-			templateToolStripMenuItem2.Name = "templateToolStripMenuItem2";
-			templateToolStripMenuItem2.Size = new Size(146, 22);
-			templateToolStripMenuItem2.Text = "Template";
+			menuItemOpenTemplate.Name = "menuItemOpenTemplate";
+			menuItemOpenTemplate.Size = new Size(180, 22);
+			menuItemOpenTemplate.Text = "Template";
+			menuItemOpenTemplate.Click += menuItemOpenTemplate_Click;
 			// 
 			// menuItemRename
 			// 
@@ -200,7 +201,7 @@
 			// 
 			// openToolStripMenuItem
 			// 
-			openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemSaveContentPage, templateToolStripMenuItem1 });
+			openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemSaveContentPage, menuItemSaveTemplate });
 			openToolStripMenuItem.Name = "openToolStripMenuItem";
 			openToolStripMenuItem.Size = new Size(192, 22);
 			openToolStripMenuItem.Text = "Save";
@@ -208,15 +209,16 @@
 			// menuItemSaveContentPage
 			// 
 			menuItemSaveContentPage.Name = "menuItemSaveContentPage";
-			menuItemSaveContentPage.Size = new Size(180, 22);
+			menuItemSaveContentPage.Size = new Size(146, 22);
 			menuItemSaveContentPage.Text = "Content Page";
 			menuItemSaveContentPage.Click += menuItemSaveContentPage_Click;
 			// 
-			// templateToolStripMenuItem1
+			// menuItemSaveTemplate
 			// 
-			templateToolStripMenuItem1.Name = "templateToolStripMenuItem1";
-			templateToolStripMenuItem1.Size = new Size(180, 22);
-			templateToolStripMenuItem1.Text = "Template";
+			menuItemSaveTemplate.Name = "menuItemSaveTemplate";
+			menuItemSaveTemplate.Size = new Size(146, 22);
+			menuItemSaveTemplate.Text = "Template";
+			menuItemSaveTemplate.Click += menuItemSaveTemplate_Click;
 			// 
 			// exitToolStripMenuItem
 			// 
@@ -427,7 +429,7 @@
 		private ToolStripMenuItem templateToolStripMenuItem;
 		private ToolStripMenuItem menuItemNewContentPage;
 		private ToolStripMenuItem menuItemSaveContentPage;
-		private ToolStripMenuItem templateToolStripMenuItem1;
+		private ToolStripMenuItem menuItemSaveTemplate;
 		private OpenFileDialog openFileDialog;
 		private SaveFileDialog saveFileDialog;
 		private TableLayoutPanel tableLayoutPanelInteractors;
@@ -441,7 +443,7 @@
 		private TableLayoutPanel tableLayoutPanel2;
 		private TableLayoutPanel tableLayoutPanel3;
 		private ToolStripMenuItem menuItemOpenContentPage;
-		private ToolStripMenuItem templateToolStripMenuItem2;
+		private ToolStripMenuItem menuItemOpenTemplate;
 		private Label labelContentName;
 		private ToolStripMenuItem menuItemRename;
 	}
