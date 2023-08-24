@@ -19,13 +19,11 @@ namespace Romplate
 			textBoxHomework.Text = FormModifyLessonHelpers.TransferedHomework.HomeworkInstance;
 			textBoxLink.Text = FormModifyLessonHelpers.Link;
 			textBoxName.Text = FormModifyLessonHelpers.Name;
-			FormModifyLessonHelpers.IsClosed = false;
 		}
 
 		private void buttonCancel_Click(object sender, EventArgs e)
 		{
 			Close();
-			FormModifyLessonHelpers.IsClosed = true;
 		}
 
 		private void buttonApply_Click(object sender, EventArgs e)
@@ -34,7 +32,6 @@ namespace Romplate
 			FormModifyLessonHelpers.Link = textBoxLink.Text;
 			FormModifyLessonHelpers.Name = textBoxName.Text;
 			Close();
-			FormModifyLessonHelpers.IsClosed = true;
 		}
 	}
 }

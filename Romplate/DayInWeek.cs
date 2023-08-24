@@ -56,9 +56,9 @@ namespace Romplate
 			return homeworks[id];
 		}
 
-		public void ModifyHomework(int id, Homework lesson)
+		public void ModifyHomework(int id, Homework homework)
 		{
-			homeworks[id] = lesson;
+			homeworks[id] = homework;
 		}
 
 		public bool IsEmpty()

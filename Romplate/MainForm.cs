@@ -181,12 +181,13 @@ namespace Romplate
 			FormModifyLessonHelpers.Name = currentTemplate.GetName(index);
 			FormModifyLessonHelpers.Link = currentTemplate.GetLink(index);
 			FormModifyLesson formModifyLesson = new FormModifyLesson();
+			formModifyLesson.FormClosing += FormModifyLesson_FormClosing;
 			formModifyLesson.ShowDialog();
+		}
 
-			while (!FormModifyLessonHelpers.IsClosed) ;
-
+		private void FormModifyLesson_FormClosing(object? sender, FormClosingEventArgs e)
+		{
 			handleClosingFormClosingEventHandler();
-
 		}
 
 		private void buttonGoToMeet_Click(object sender, EventArgs e)
@@ -251,20 +252,48 @@ namespace Romplate
 			openFileDialog.DefaultExt = "rmcp";
 			openFileDialog.FileName = currentContent.Name;
 			openFileDialog.Filter = "Rompacter Content Page files (*.rmcp)|*.rmcp|All files (*.*)|*.*";
+			openFileDialog.Title = "Open Content Page";
+			openFileDialog.FileOk += OpenFileDialogOpenContentPage_FileOk;
 
 			openFileDialog.ShowDialog();
+		}
+
+		private void OpenFileDialogOpenContentPage_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
+		{
+			currentContent = FileManagerContentPage.Load(openFileDialog.FileName);
 		}
 
 		private void menuItemRename_Click(object sender, EventArgs e)
 		{
 			FormRenameContentPageHelpers.Name = currentContent.Name;
 			var form = new FormRenameContentPage();
+			form.FormClosing += FormRenameContentPage_FormClosing;
 			form.ShowDialog();
+		}
 
-			while (!FormRenameContentPageHelpers.IsClosed) ;
-
+		private void FormRenameContentPage_FormClosing(object? sender, FormClosingEventArgs e)
+		{
 			currentContent.Name = FormRenameContentPageHelpers.Name;
 			updateListBox();
+		}
+
+		private void menuItemSaveContentPage_Click(object sender, EventArgs e)
+		{
+			saveFileDialog.AddExtension = true;
+			saveFileDialog.CheckPathExists = true;
+			saveFileDialog.CheckFileExists = false;
+			saveFileDialog.DefaultExt = "rmcp";
+			saveFileDialog.FileName = currentContent.Name;
+			saveFileDialog.Filter = "Rompacter Content Page files (*.rmcp)|*.rmcp|All files (*.*)|*.*";
+			saveFileDialog.Title = "Save Content Page";
+			saveFileDialog.FileOk += OpenFileDialogSaveContentPage_FileOk;
+
+			saveFileDialog.ShowDialog();
+		}
+
+		private void OpenFileDialogSaveContentPage_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
+		{
+			FileManagerContentPage.Save(saveFileDialog.FileName, currentContent);
 		}
 	}
 }

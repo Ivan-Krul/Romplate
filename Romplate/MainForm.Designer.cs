@@ -45,7 +45,7 @@
 			templateToolStripMenuItem2 = new ToolStripMenuItem();
 			menuItemRename = new ToolStripMenuItem();
 			openToolStripMenuItem = new ToolStripMenuItem();
-			weekToolStripMenuItem1 = new ToolStripMenuItem();
+			menuItemSaveContentPage = new ToolStripMenuItem();
 			templateToolStripMenuItem1 = new ToolStripMenuItem();
 			exitToolStripMenuItem = new ToolStripMenuItem();
 			aboutToolStripMenuItem = new ToolStripMenuItem();
@@ -200,21 +200,22 @@
 			// 
 			// openToolStripMenuItem
 			// 
-			openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { weekToolStripMenuItem1, templateToolStripMenuItem1 });
+			openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemSaveContentPage, templateToolStripMenuItem1 });
 			openToolStripMenuItem.Name = "openToolStripMenuItem";
 			openToolStripMenuItem.Size = new Size(192, 22);
 			openToolStripMenuItem.Text = "Save";
 			// 
-			// weekToolStripMenuItem1
+			// menuItemSaveContentPage
 			// 
-			weekToolStripMenuItem1.Name = "weekToolStripMenuItem1";
-			weekToolStripMenuItem1.Size = new Size(146, 22);
-			weekToolStripMenuItem1.Text = "Content Page";
+			menuItemSaveContentPage.Name = "menuItemSaveContentPage";
+			menuItemSaveContentPage.Size = new Size(180, 22);
+			menuItemSaveContentPage.Text = "Content Page";
+			menuItemSaveContentPage.Click += menuItemSaveContentPage_Click;
 			// 
 			// templateToolStripMenuItem1
 			// 
 			templateToolStripMenuItem1.Name = "templateToolStripMenuItem1";
-			templateToolStripMenuItem1.Size = new Size(146, 22);
+			templateToolStripMenuItem1.Size = new Size(180, 22);
 			templateToolStripMenuItem1.Text = "Template";
 			// 
 			// exitToolStripMenuItem
@@ -425,7 +426,7 @@
 		private ToolStripMenuItem aboutToolStripMenuItem;
 		private ToolStripMenuItem templateToolStripMenuItem;
 		private ToolStripMenuItem menuItemNewContentPage;
-		private ToolStripMenuItem weekToolStripMenuItem1;
+		private ToolStripMenuItem menuItemSaveContentPage;
 		private ToolStripMenuItem templateToolStripMenuItem1;
 		private OpenFileDialog openFileDialog;
 		private SaveFileDialog saveFileDialog;
