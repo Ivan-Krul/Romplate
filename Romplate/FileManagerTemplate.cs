@@ -27,6 +27,8 @@ namespace Romplate
 	 */
 	internal class FileManagerTemplate
 	{
+		public static ContentPage ContentPageInstance { get; set; }
+
 		public static void Save(string path, Template template)
 		{
 			if (File.Exists(path))
@@ -43,11 +45,11 @@ namespace Romplate
 			{
 				using (BinaryWriter writer = new BinaryWriter(file))
 				{
-					for(int d = 0; d < Template.DaysInWeek; d++)
+					for (int d = 0; d < Template.DaysInWeek; d++)
 					{
 						template.CurrentDay = d;
 						writer.Write(template.Count);
-						for(int l = 0; l < template.Count; l++)
+						for (int l = 0; l < template.Count; l++)
 						{
 							writer.Write(template.GetName(l));
 							writer.Write(template.GetLink(l));
@@ -60,26 +62,35 @@ namespace Romplate
 		}
 		public static Template Load(string path)
 		{
-			var template = new Template();
+			ContentPageInstance = new ContentPage();
+			Template template = new Template();
 
 			using (FileStream file = new FileStream(path, FileMode.Open))
 			{
 				using (BinaryReader reader = new BinaryReader(file))
 				{
-					for(int d = 0; d < Template.DaysInWeek; d++)
+					for (int d = 0; d < Template.DaysInWeek; d++)
 					{
+						template.CurrentDay = d;
 						int lessonCount = reader.ReadInt32();
-						for(int l = 0; l <  lessonCount; l++)
+
+						var day = ContentPageInstance.GetDay(d);
+						for (int l = 0; l < lessonCount; l++)
 						{
+							day.CreateHomework();
 							template.CreateLesson();
 							template.SetName(l, reader.ReadString());
-							template.SetName(l, reader.ReadString());
+							template.SetLink(l, reader.ReadString());
 						}
+						ContentPageInstance.SetDay(d,day);
 					}
+
 					reader.Close();
 				}
 				file.Close();
 			}
+
+			template.CurrentDay = 0;
 
 			return template;
 		}

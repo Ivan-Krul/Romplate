@@ -65,7 +65,7 @@ namespace Romplate
 
 		public static ContentPage Load(string path)
 		{
-			var contentPage = new ContentPage();
+			ContentPage contentPage = new ContentPage();
 
 			using (FileStream file = new FileStream(path, FileMode.Open))
 			{

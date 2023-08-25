@@ -10,9 +10,8 @@ namespace Romplate
 
 		private void updateListBox()
 		{
-			var day = currentContent.GetDay(currentTemplate.CurrentDay);
 			listBoxLessons.Items.Clear();
-			for (int i = 0; i < day.Count; i++)
+			for (int i = 0; i < currentTemplate.Count; i++)
 			{
 				listBoxLessons.Items.Add(currentTemplate.GetName(i));
 			}
@@ -333,7 +332,9 @@ namespace Romplate
 		private void OpenFileDialogOpenTemplate_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
 		{
 			currentTemplate = FileManagerTemplate.Load(openFileDialog.FileName);
-			currentContent = new ContentPage();
+			currentContent = FileManagerTemplate.ContentPageInstance;
+			updateListBox();
+
 		}
 	}
 }
