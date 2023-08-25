@@ -260,6 +260,7 @@ namespace Romplate
 		private void OpenFileDialogOpenContentPage_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
 		{
 			currentContent = FileManagerContentPage.Load(openFileDialog.FileName);
+			openFileDialog.FileOk -= OpenFileDialogOpenContentPage_FileOk;
 		}
 
 		private void menuItemRename_Click(object sender, EventArgs e)
@@ -293,6 +294,7 @@ namespace Romplate
 		private void OpenFileDialogSaveContentPage_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
 		{
 			FileManagerContentPage.Save(saveFileDialog.FileName, currentContent);
+			saveFileDialog.FileOk -= OpenFileDialogSaveContentPage_FileOk;
 		}
 
 		private void menuItemSaveTemplate_Click(object sender, EventArgs e)
@@ -312,6 +314,7 @@ namespace Romplate
 		private void OpenFileDialogSaveTemplate_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
 		{
 			FileManagerTemplate.Save(saveFileDialog.FileName, currentTemplate);
+			saveFileDialog.FileOk -= OpenFileDialogSaveTemplate_FileOk;
 		}
 
 		private void menuItemOpenTemplate_Click(object sender, EventArgs e)
@@ -334,6 +337,7 @@ namespace Romplate
 			currentTemplate = FileManagerTemplate.Load(openFileDialog.FileName);
 			currentContent = FileManagerTemplate.ContentPageInstance;
 			updateListBox();
+			openFileDialog.FileOk -= OpenFileDialogOpenTemplate_FileOk;
 
 		}
 	}
