@@ -181,14 +181,14 @@
 			// menuItemOpenContentPage
 			// 
 			menuItemOpenContentPage.Name = "menuItemOpenContentPage";
-			menuItemOpenContentPage.Size = new Size(180, 22);
+			menuItemOpenContentPage.Size = new Size(146, 22);
 			menuItemOpenContentPage.Text = "Content Page";
 			menuItemOpenContentPage.Click += menuItemOpenContentPage_Click;
 			// 
 			// menuItemOpenTemplate
 			// 
 			menuItemOpenTemplate.Name = "menuItemOpenTemplate";
-			menuItemOpenTemplate.Size = new Size(180, 22);
+			menuItemOpenTemplate.Size = new Size(146, 22);
 			menuItemOpenTemplate.Text = "Template";
 			menuItemOpenTemplate.Click += menuItemOpenTemplate_Click;
 			// 

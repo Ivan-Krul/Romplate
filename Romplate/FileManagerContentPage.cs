@@ -16,6 +16,7 @@ namespace Romplate
 	 *			<-
 	 *		}
 	 * Structure:
+	 *		&Str(Path to Template)
 	 *		&Str(Name)
 	 *		7 > d
 	 *		->
@@ -29,7 +30,9 @@ namespace Romplate
 	 */
 	internal class FileManagerContentPage
 	{
-		public static void Save(string path, ContentPage contentPage)
+		public static Template TemplateInstance { get; set; }
+
+		public static void Save(string path, string pathToTemplate, ContentPage contentPage)
 		{
 			if (File.Exists(path))
 			{
@@ -45,6 +48,7 @@ namespace Romplate
 			{
 				using (BinaryWriter writer = new BinaryWriter(file))
 				{
+					writer.Write(pathToTemplate);
 					writer.Write(contentPage.Name);
 					for(int d = 0; d < Template.DaysInWeek; d++)
 					{
@@ -63,7 +67,7 @@ namespace Romplate
 			}
 		}
 
-		public static ContentPage Load(string path)
+		public static ContentPage Load(string path, bool needOverrideCurrentTemplate)
 		{
 			ContentPage contentPage = new ContentPage();
 
@@ -71,6 +75,8 @@ namespace Romplate
 			{
 				using (BinaryReader reader = new BinaryReader(file))
 				{
+					if(needOverrideCurrentTemplate)
+						TemplateInstance = FileManagerTemplate.Load(reader.ReadString());
 					contentPage.Name = reader.ReadString();
 					for(int d = 0; d < Template.DaysInWeek; d++)
 					{

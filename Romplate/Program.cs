@@ -2,15 +2,18 @@ namespace Romplate
 {
 	internal static class Program
 	{
+		public static string[] cmdArgs;
+
 		/// <summary>
 		///  The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main()
+		static void Main(string[] arguments)
 		{
 			// To customize application configuration such as set high DPI settings or default font,
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
+			cmdArgs = Environment.GetCommandLineArgs();
 			Application.Run(new MainForm());
 		}
 	}
