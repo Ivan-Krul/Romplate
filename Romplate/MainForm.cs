@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace Romplate
@@ -43,6 +45,59 @@ namespace Romplate
 			checkBoxIsDone.Enabled = checkBoxIsDone.Checked == false && isChoosed;
 		}
 
+		private void changeTheme()
+		{
+			if (UserProfile.IsDarkTheme)
+			{
+				BackColor = SystemColors.WindowText;
+				ForeColor = SystemColors.Window;
+				listBoxLessons.BackColor = SystemColors.WindowText;
+				listBoxLessons.ForeColor = SystemColors.Window;
+				numericUpDownWeekDays.BackColor = SystemColors.WindowText;
+				numericUpDownWeekDays.ForeColor = SystemColors.Window;
+				textBoxHomework.BackColor = SystemColors.WindowText;
+				textBoxHomework.ForeColor = SystemColors.Window;
+				textBoxNotation.BackColor = SystemColors.WindowText;
+				textBoxNotation.ForeColor = SystemColors.Window;
+				buttonCreateLesson.BackColor = SystemColors.WindowText;
+				buttonCreateLesson.ForeColor = SystemColors.Window;
+				buttonModifyLesson.BackColor = SystemColors.WindowText;
+				buttonModifyLesson.ForeColor = SystemColors.Window;
+				buttonDeleteLesson.BackColor = SystemColors.WindowText;
+				buttonDeleteLesson.ForeColor = SystemColors.Window;
+				buttonGoToMeet.BackColor = SystemColors.WindowText;
+				buttonGoToMeet.ForeColor = SystemColors.Window;
+
+				menuStrip.BackColor = SystemColors.WindowText;
+				menuStrip.ForeColor = SystemColors.Window;
+
+				newToolStripMenuItem.BackColor = SystemColors.WindowText;
+				newToolStripMenuItem.ForeColor = SystemColors.Window;
+				openToolStripMenuItem.BackColor = SystemColors.WindowText;
+				openToolStripMenuItem.ForeColor = SystemColors.Window;
+				menuItemRename.BackColor = SystemColors.WindowText;
+				menuItemRename.ForeColor = SystemColors.Window;
+				saveToolStripMenuItem.BackColor = SystemColors.WindowText;
+				saveToolStripMenuItem.ForeColor = SystemColors.Window;
+				exitToolStripMenuItem.BackColor = SystemColors.WindowText;
+				exitToolStripMenuItem.ForeColor = SystemColors.Window;
+
+				menuItemNewContentPage.BackColor = SystemColors.WindowText;
+				menuItemNewContentPage.ForeColor = SystemColors.Window;
+				menuItemOpenContentPage.BackColor = SystemColors.WindowText;
+				menuItemOpenContentPage.ForeColor = SystemColors.Window;
+				menuItemOpenTemplate.BackColor = SystemColors.WindowText;
+				menuItemOpenTemplate.ForeColor = SystemColors.Window;
+				menuItemSaveTemplate.BackColor = SystemColors.WindowText;
+				menuItemSaveTemplate.ForeColor = SystemColors.Window;
+				menuItemSaveContentPage.BackColor = SystemColors.WindowText;
+				menuItemSaveContentPage.ForeColor = SystemColors.Window;
+				templateToolStripMenuItem.BackColor = SystemColors.WindowText;
+				templateToolStripMenuItem.ForeColor = SystemColors.Window;
+
+			}
+		}
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -66,7 +121,8 @@ namespace Romplate
 				}
 			}
 
-
+			UserProfile.Initialise();
+			changeTheme();
 
 			buttonDeleteLesson.Enabled = false;
 			buttonModifyLesson.Enabled = false;

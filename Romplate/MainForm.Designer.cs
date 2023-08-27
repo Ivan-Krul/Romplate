@@ -62,6 +62,8 @@
 			labelContentName = new Label();
 			tableLayoutPanel2 = new TableLayoutPanel();
 			tableLayoutPanel3 = new TableLayoutPanel();
+			viewToolStripMenuItem = new ToolStripMenuItem();
+			changeThemeToolStripMenuItem = new ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)numericUpDownWeekDays).BeginInit();
 			menuStrip.SuspendLayout();
 			tableLayoutPanelInteractors.SuspendLayout();
@@ -136,7 +138,7 @@
 			// 
 			// menuStrip
 			// 
-			menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, aboutToolStripMenuItem });
+			menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, viewToolStripMenuItem, aboutToolStripMenuItem });
 			menuStrip.Location = new Point(0, 0);
 			menuStrip.Name = "menuStrip";
 			menuStrip.Size = new Size(655, 24);
@@ -152,7 +154,9 @@
 			// 
 			// newToolStripMenuItem
 			// 
+			newToolStripMenuItem.BackColor = SystemColors.Control;
 			newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemNewContentPage, templateToolStripMenuItem });
+			newToolStripMenuItem.ForeColor = SystemColors.ControlText;
 			newToolStripMenuItem.Name = "newToolStripMenuItem";
 			newToolStripMenuItem.Size = new Size(192, 22);
 			newToolStripMenuItem.Text = "New";
@@ -160,15 +164,15 @@
 			// menuItemNewContentPage
 			// 
 			menuItemNewContentPage.Name = "menuItemNewContentPage";
-			menuItemNewContentPage.Size = new Size(146, 22);
+			menuItemNewContentPage.Size = new Size(180, 22);
 			menuItemNewContentPage.Text = "Content Page";
 			menuItemNewContentPage.Click += menuItemNewContentPage_Click;
 			// 
 			// templateToolStripMenuItem
 			// 
 			templateToolStripMenuItem.Name = "templateToolStripMenuItem";
-			templateToolStripMenuItem.Size = new Size(146, 22);
-			templateToolStripMenuItem.Text = "Template";
+			templateToolStripMenuItem.Size = new Size(180, 22);
+			templateToolStripMenuItem.Text = "Vi";
 			templateToolStripMenuItem.Click += templateToolStripMenuItem_Click;
 			// 
 			// saveToolStripMenuItem
@@ -293,6 +297,7 @@
 			// buttonCreateLesson
 			// 
 			buttonCreateLesson.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			buttonCreateLesson.ForeColor = SystemColors.ControlText;
 			buttonCreateLesson.Location = new Point(3, 3);
 			buttonCreateLesson.Name = "buttonCreateLesson";
 			buttonCreateLesson.Size = new Size(427, 33);
@@ -383,10 +388,24 @@
 			tableLayoutPanel3.Size = new Size(430, 217);
 			tableLayoutPanel3.TabIndex = 13;
 			// 
+			// viewToolStripMenuItem
+			// 
+			viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { changeThemeToolStripMenuItem });
+			viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+			viewToolStripMenuItem.Size = new Size(44, 20);
+			viewToolStripMenuItem.Text = "View";
+			// 
+			// changeThemeToolStripMenuItem
+			// 
+			changeThemeToolStripMenuItem.Name = "changeThemeToolStripMenuItem";
+			changeThemeToolStripMenuItem.Size = new Size(180, 22);
+			changeThemeToolStripMenuItem.Text = "Change Theme";
+			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
+			BackColor = SystemColors.Control;
 			ClientSize = new Size(655, 431);
 			Controls.Add(tableLayoutPanel3);
 			Controls.Add(tableLayoutPanel1);
@@ -446,5 +465,7 @@
 		private ToolStripMenuItem menuItemOpenTemplate;
 		private Label labelContentName;
 		private ToolStripMenuItem menuItemRename;
+		private ToolStripMenuItem viewToolStripMenuItem;
+		private ToolStripMenuItem changeThemeToolStripMenuItem;
 	}
 }
