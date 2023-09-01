@@ -66,6 +66,21 @@ namespace Romplate
 
 		}
 
+		public static void Reinitialise()
+		{
+			CheckForExistingAuthorFolder();
+			CheckForExistingProjectFolder();
+			CheckForExistingProfile();
+
+			FileStream file = new FileStream(AppDataFolderPath + "\\" + AuthorFolderAppData + "\\" + ProjectFolderAppData + "\\" + "Profile.txt", FileMode.Create);
+			StreamWriter writer = new StreamWriter(file);
+
+			writer.Write(IsDarkTheme ? "DarkMode" : "LightMode");
+
+			writer.Close();
+			file.Close();
+		}
+
 		public static bool IsDarkTheme { get; set; }
 	}
 }

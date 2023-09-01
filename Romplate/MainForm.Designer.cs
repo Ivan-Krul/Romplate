@@ -30,8 +30,6 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			listBoxLessons = new ListBox();
-			numericUpDownWeekDays = new NumericUpDown();
-			labelDayWeek = new Label();
 			textBoxNotation = new TextBox();
 			labelNotation = new Label();
 			checkBoxIsDone = new CheckBox();
@@ -48,6 +46,8 @@
 			menuItemSaveContentPage = new ToolStripMenuItem();
 			menuItemSaveTemplate = new ToolStripMenuItem();
 			exitToolStripMenuItem = new ToolStripMenuItem();
+			viewToolStripMenuItem = new ToolStripMenuItem();
+			menuItemChangeTheme = new ToolStripMenuItem();
 			aboutToolStripMenuItem = new ToolStripMenuItem();
 			openFileDialog = new OpenFileDialog();
 			saveFileDialog = new SaveFileDialog();
@@ -59,12 +59,10 @@
 			labelHomeworkSign = new Label();
 			textBoxHomework = new TextBox();
 			tableLayoutPanel1 = new TableLayoutPanel();
+			comboBoxWeekDays = new ComboBox();
 			labelContentName = new Label();
 			tableLayoutPanel2 = new TableLayoutPanel();
 			tableLayoutPanel3 = new TableLayoutPanel();
-			viewToolStripMenuItem = new ToolStripMenuItem();
-			changeThemeToolStripMenuItem = new ToolStripMenuItem();
-			((System.ComponentModel.ISupportInitialize)numericUpDownWeekDays).BeginInit();
 			menuStrip.SuspendLayout();
 			tableLayoutPanelInteractors.SuspendLayout();
 			tableLayoutPanel1.SuspendLayout();
@@ -79,30 +77,9 @@
 			listBoxLessons.ItemHeight = 15;
 			listBoxLessons.Location = new Point(3, 31);
 			listBoxLessons.Name = "listBoxLessons";
-			listBoxLessons.Size = new Size(190, 289);
+			listBoxLessons.Size = new Size(190, 319);
 			listBoxLessons.TabIndex = 0;
 			listBoxLessons.SelectedIndexChanged += listBoxLessons_SelectedIndexChanged;
-			// 
-			// numericUpDownWeekDays
-			// 
-			numericUpDownWeekDays.Location = new Point(3, 357);
-			numericUpDownWeekDays.Maximum = new decimal(new int[] { 7, 0, 0, 0 });
-			numericUpDownWeekDays.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-			numericUpDownWeekDays.Name = "numericUpDownWeekDays";
-			numericUpDownWeekDays.Size = new Size(82, 23);
-			numericUpDownWeekDays.TabIndex = 1;
-			numericUpDownWeekDays.Value = new decimal(new int[] { 1, 0, 0, 0 });
-			numericUpDownWeekDays.ValueChanged += numericUpDownWeekDays_ValueChanged;
-			// 
-			// labelDayWeek
-			// 
-			labelDayWeek.AutoSize = true;
-			labelDayWeek.Location = new Point(3, 326);
-			labelDayWeek.Name = "labelDayWeek";
-			labelDayWeek.Size = new Size(51, 15);
-			labelDayWeek.TabIndex = 2;
-			labelDayWeek.Text = "Monday";
-			labelDayWeek.TextAlign = ContentAlignment.MiddleCenter;
 			// 
 			// textBoxNotation
 			// 
@@ -164,14 +141,14 @@
 			// menuItemNewContentPage
 			// 
 			menuItemNewContentPage.Name = "menuItemNewContentPage";
-			menuItemNewContentPage.Size = new Size(180, 22);
+			menuItemNewContentPage.Size = new Size(146, 22);
 			menuItemNewContentPage.Text = "Content Page";
 			menuItemNewContentPage.Click += menuItemNewContentPage_Click;
 			// 
 			// templateToolStripMenuItem
 			// 
 			templateToolStripMenuItem.Name = "templateToolStripMenuItem";
-			templateToolStripMenuItem.Size = new Size(180, 22);
+			templateToolStripMenuItem.Size = new Size(146, 22);
 			templateToolStripMenuItem.Text = "Vi";
 			templateToolStripMenuItem.Click += templateToolStripMenuItem_Click;
 			// 
@@ -230,6 +207,20 @@
 			exitToolStripMenuItem.Size = new Size(192, 22);
 			exitToolStripMenuItem.Text = "Exit";
 			exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+			// 
+			// viewToolStripMenuItem
+			// 
+			viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuItemChangeTheme });
+			viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+			viewToolStripMenuItem.Size = new Size(44, 20);
+			viewToolStripMenuItem.Text = "View";
+			// 
+			// menuItemChangeTheme
+			// 
+			menuItemChangeTheme.Name = "menuItemChangeTheme";
+			menuItemChangeTheme.Size = new Size(154, 22);
+			menuItemChangeTheme.Text = "Change Theme";
+			menuItemChangeTheme.Click += changeThemeToolStripMenuItem_Click;
 			// 
 			// aboutToolStripMenuItem
 			// 
@@ -331,20 +322,30 @@
 			tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
 			tableLayoutPanel1.ColumnCount = 1;
 			tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.Controls.Add(numericUpDownWeekDays, 0, 3);
-			tableLayoutPanel1.Controls.Add(labelDayWeek, 0, 2);
+			tableLayoutPanel1.Controls.Add(comboBoxWeekDays, 0, 2);
 			tableLayoutPanel1.Controls.Add(listBoxLessons, 0, 1);
 			tableLayoutPanel1.Controls.Add(labelContentName, 0, 0);
 			tableLayoutPanel1.Location = new Point(4, 37);
 			tableLayoutPanel1.Name = "tableLayoutPanel1";
-			tableLayoutPanel1.RowCount = 4;
+			tableLayoutPanel1.RowCount = 3;
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
 			tableLayoutPanel1.Size = new Size(200, 382);
 			tableLayoutPanel1.TabIndex = 11;
+			// 
+			// comboBoxWeekDays
+			// 
+			comboBoxWeekDays.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+			comboBoxWeekDays.DropDownStyle = ComboBoxStyle.DropDownList;
+			comboBoxWeekDays.FormattingEnabled = true;
+			comboBoxWeekDays.Items.AddRange(new object[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" });
+			comboBoxWeekDays.Location = new Point(3, 357);
+			comboBoxWeekDays.Name = "comboBoxWeekDays";
+			comboBoxWeekDays.Size = new Size(194, 23);
+			comboBoxWeekDays.TabIndex = 14;
+			comboBoxWeekDays.SelectedIndexChanged += comboBoxWeekDays_SelectedIndexChanged;
 			// 
 			// labelContentName
 			// 
@@ -388,19 +389,6 @@
 			tableLayoutPanel3.Size = new Size(430, 217);
 			tableLayoutPanel3.TabIndex = 13;
 			// 
-			// viewToolStripMenuItem
-			// 
-			viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { changeThemeToolStripMenuItem });
-			viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-			viewToolStripMenuItem.Size = new Size(44, 20);
-			viewToolStripMenuItem.Text = "View";
-			// 
-			// changeThemeToolStripMenuItem
-			// 
-			changeThemeToolStripMenuItem.Name = "changeThemeToolStripMenuItem";
-			changeThemeToolStripMenuItem.Size = new Size(180, 22);
-			changeThemeToolStripMenuItem.Text = "Change Theme";
-			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -416,7 +404,6 @@
 			MinimumSize = new Size(405, 396);
 			Name = "MainForm";
 			Text = "Romplate";
-			((System.ComponentModel.ISupportInitialize)numericUpDownWeekDays).EndInit();
 			menuStrip.ResumeLayout(false);
 			menuStrip.PerformLayout();
 			tableLayoutPanelInteractors.ResumeLayout(false);
@@ -433,8 +420,6 @@
 		#endregion
 
 		private ListBox listBoxLessons;
-		private NumericUpDown numericUpDownWeekDays;
-		private Label labelDayWeek;
 		private TextBox textBoxNotation;
 		private Label labelNotation;
 		private CheckBox checkBoxIsDone;
@@ -466,6 +451,7 @@
 		private Label labelContentName;
 		private ToolStripMenuItem menuItemRename;
 		private ToolStripMenuItem viewToolStripMenuItem;
-		private ToolStripMenuItem changeThemeToolStripMenuItem;
+		private ToolStripMenuItem menuItemChangeTheme;
+		private ComboBox comboBoxWeekDays;
 	}
 }

@@ -12,18 +12,6 @@ namespace Romplate
 {
 	public partial class FormRenameContentPage : Form
 	{
-		private void changeTheme()
-		{
-			BackColor = SystemColors.WindowText;
-			ForeColor = SystemColors.Window;
-			textBoxNewName.BackColor = SystemColors.WindowText;
-			textBoxNewName.ForeColor = SystemColors.Window;
-			buttonCancel.BackColor = SystemColors.WindowText;
-			buttonCancel.ForeColor = SystemColors.Window;
-			buttonApply.BackColor = SystemColors.WindowText;
-			buttonApply.ForeColor = SystemColors.Window;
-		}
-
 		public FormRenameContentPage()
 		{
 			InitializeComponent();

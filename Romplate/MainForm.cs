@@ -53,8 +53,8 @@ namespace Romplate
 				ForeColor = SystemColors.Window;
 				listBoxLessons.BackColor = SystemColors.WindowText;
 				listBoxLessons.ForeColor = SystemColors.Window;
-				numericUpDownWeekDays.BackColor = SystemColors.WindowText;
-				numericUpDownWeekDays.ForeColor = SystemColors.Window;
+				comboBoxWeekDays.BackColor = SystemColors.WindowText;
+				comboBoxWeekDays.ForeColor = SystemColors.Window;
 				textBoxHomework.BackColor = SystemColors.WindowText;
 				textBoxHomework.ForeColor = SystemColors.Window;
 				textBoxNotation.BackColor = SystemColors.WindowText;
@@ -95,6 +95,8 @@ namespace Romplate
 				templateToolStripMenuItem.BackColor = SystemColors.WindowText;
 				templateToolStripMenuItem.ForeColor = SystemColors.Window;
 
+				menuItemChangeTheme.BackColor = SystemColors.WindowText;
+				menuItemChangeTheme.ForeColor = SystemColors.Window;
 			}
 		}
 
@@ -119,10 +121,16 @@ namespace Romplate
 					currentContent = FileManagerContentPage.Load(Program.cmdArgs[1], true);
 					currentTemplate = FileManagerContentPage.TemplateInstance;
 				}
+				else
+				{
+					throw new FormatException();
+				}
 			}
 
 			UserProfile.Initialise();
 			changeTheme();
+
+			comboBoxWeekDays.SelectedIndex = 0;
 
 			buttonDeleteLesson.Enabled = false;
 			buttonModifyLesson.Enabled = false;
@@ -134,38 +142,6 @@ namespace Romplate
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Close();
-		}
-
-		private void numericUpDownWeekDays_ValueChanged(object sender, EventArgs e)
-		{
-			currentTemplate.CurrentDay = (int)numericUpDownWeekDays.Value - 1;
-			switch (currentTemplate.CurrentDay)
-			{
-				case 0:
-					labelDayWeek.Text = "Monday";
-					break;
-				case 1:
-					labelDayWeek.Text = "Tuesday";
-					break;
-				case 2:
-					labelDayWeek.Text = "Wednesday";
-					break;
-				case 3:
-					labelDayWeek.Text = "Thursday";
-					break;
-				case 4:
-					labelDayWeek.Text = "Friday";
-					break;
-				case 5:
-					labelDayWeek.Text = "Saturday";
-					break;
-				case 6:
-					labelDayWeek.Text = "Sunday";
-					break;
-			}
-			updateListBox();
-			turnAdditionalButtons();
-			textBoxNotation.Text = currentContent.GetDay(currentTemplate.CurrentDay).Notation;
 		}
 
 		private void buttonCreateLesson_Click(object sender, EventArgs e)
@@ -474,6 +450,20 @@ namespace Romplate
 			updateListBox();
 			openFileDialog.FileOk -= OpenFileDialogOpenTemplate_FileOk;
 
+		}
+
+		private void changeThemeToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			UserProfile.IsDarkTheme = !UserProfile.IsDarkTheme;
+			UserProfile.Reinitialise();
+		}
+
+		private void comboBoxWeekDays_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			currentTemplate.CurrentDay = comboBoxWeekDays.FindString((string)comboBoxWeekDays.SelectedItem);
+			updateListBox();
+			turnAdditionalButtons();
+			textBoxNotation.Text = currentContent.GetDay(currentTemplate.CurrentDay).Notation;
 		}
 	}
 }
