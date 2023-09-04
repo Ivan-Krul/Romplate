@@ -31,20 +31,11 @@ namespace Romplate
 
 		public static void Save(string path, Template template)
 		{
-			if (File.Exists(path))
-			{
-				var res = MessageBox.Show("Do you want to override the file?", "Override?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-				if (res.ToString() == "No")
-					return;
-
-				File.Delete(path);
-			}
-
 			using (FileStream file = new FileStream(path, FileMode.Create))
 			{
 				using (BinaryWriter writer = new BinaryWriter(file))
 				{
+					
 					for (int d = 0; d < Template.DaysInWeek; d++)
 					{
 						template.CurrentDay = d;

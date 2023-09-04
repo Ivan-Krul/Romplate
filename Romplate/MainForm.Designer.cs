@@ -190,14 +190,14 @@
 			// menuItemSaveContentPage
 			// 
 			menuItemSaveContentPage.Name = "menuItemSaveContentPage";
-			menuItemSaveContentPage.Size = new Size(146, 22);
+			menuItemSaveContentPage.Size = new Size(180, 22);
 			menuItemSaveContentPage.Text = "Content Page";
 			menuItemSaveContentPage.Click += menuItemSaveContentPage_Click;
 			// 
 			// menuItemSaveTemplate
 			// 
 			menuItemSaveTemplate.Name = "menuItemSaveTemplate";
-			menuItemSaveTemplate.Size = new Size(146, 22);
+			menuItemSaveTemplate.Size = new Size(180, 22);
 			menuItemSaveTemplate.Text = "Template";
 			menuItemSaveTemplate.Click += menuItemSaveTemplate_Click;
 			// 

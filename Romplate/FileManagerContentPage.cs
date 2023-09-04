@@ -34,21 +34,21 @@ namespace Romplate
 
 		public static void Save(string path, string pathToTemplate, ContentPage contentPage)
 		{
-			if (File.Exists(path))
-			{
-				var res = MessageBox.Show("Do you want to override the file?", "Override?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-				if (res.ToString() == "No")
-					return;
-
-				File.Delete(path);
-			}
-
 			using (FileStream file = new FileStream(path, FileMode.Create))
 			{
 				using (BinaryWriter writer = new BinaryWriter(file))
 				{
-					writer.Write(pathToTemplate);
+					for (int d = 0; d < Template.DaysInWeek; d++)
+					{
+						TemplateInstance.CurrentDay = d;
+						writer.Write(TemplateInstance.Count);
+						for (int l = 0; l < TemplateInstance.Count; l++)
+						{
+							writer.Write(TemplateInstance.GetName(l));
+							writer.Write(TemplateInstance.GetLink(l));
+						}
+					}
+
 					writer.Write(contentPage.Name);
 					for(int d = 0; d < Template.DaysInWeek; d++)
 					{
@@ -67,7 +67,7 @@ namespace Romplate
 			}
 		}
 
-		public static ContentPage Load(string path, bool needOverrideCurrentTemplate)
+		public static ContentPage Load(string path)
 		{
 			ContentPage contentPage = new ContentPage();
 
@@ -75,8 +75,21 @@ namespace Romplate
 			{
 				using (BinaryReader reader = new BinaryReader(file))
 				{
-					if(needOverrideCurrentTemplate)
-						TemplateInstance = FileManagerTemplate.Load(reader.ReadString());
+					for (int d = 0; d < Template.DaysInWeek; d++)
+					{
+						TemplateInstance.CurrentDay = d;
+						int lessonCount = reader.ReadInt32();
+
+						var day = contentPage.GetDay(d);
+						for (int l = 0; l < lessonCount; l++)
+						{
+							day.CreateHomework();
+							TemplateInstance.CreateLesson();
+							TemplateInstance.SetName(l, reader.ReadString());
+							TemplateInstance.SetLink(l, reader.ReadString());
+						}
+					}
+
 					contentPage.Name = reader.ReadString();
 					for(int d = 0; d < Template.DaysInWeek; d++)
 					{

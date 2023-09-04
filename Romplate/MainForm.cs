@@ -118,7 +118,7 @@ namespace Romplate
 				}
 				else if (Program.cmdArgs[1].IndexOf(".rmcp") != -1)
 				{
-					currentContent = FileManagerContentPage.Load(Program.cmdArgs[1], true);
+					currentContent = FileManagerContentPage.Load(Program.cmdArgs[1]);
 					currentTemplate = FileManagerContentPage.TemplateInstance;
 				}
 				else
@@ -311,15 +311,8 @@ namespace Romplate
 
 		private void OpenFileDialogOpenContentPage_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
 		{
-			var res = MessageBox.Show("Do you want to override Template?", "Override?", MessageBoxButtons.YesNoCancel);
-			string str = res.ToString();
-			if (str == "Yes")
-			{
-				currentContent = FileManagerContentPage.Load(openFileDialog.FileName, true);
-				currentTemplate = FileManagerContentPage.TemplateInstance;
-			}
-			else if (str == "No")
-				currentContent = FileManagerContentPage.Load(openFileDialog.FileName, false);
+			currentContent = FileManagerContentPage.Load(openFileDialog.FileName);
+			currentTemplate = FileManagerContentPage.TemplateInstance;
 
 			updateListBox();
 			openFileDialog.FileOk -= OpenFileDialogOpenContentPage_FileOk;
@@ -339,23 +332,7 @@ namespace Romplate
 			updateListBox();
 		}
 
-		private void SaveFileDialogSaveTemplateNow_FileOk(object? sender, EventArgs e)
-		{
-			resPath = saveFileDialog.FileName;
-
-			saveFileDialog.FileOk -= SaveFileDialogSaveTemplateNow_FileOk;
-			HandleSavingContentPage();
-		}
-
-		private void OpenFileDialogOpenTemplateNow_FileOk(object? sender, EventArgs e)
-		{
-			resPath = openFileDialog.FileName;
-
-			openFileDialog.FileOk -= OpenFileDialogOpenTemplateNow_FileOk;
-			HandleSavingContentPage();
-		}
-
-		private void HandleSavingContentPage()
+		private void menuItemSaveContentPage_Click(object sender, EventArgs e)
 		{
 			saveFileDialog.AddExtension = true;
 			saveFileDialog.CheckPathExists = true;
@@ -369,41 +346,9 @@ namespace Romplate
 			saveFileDialog.ShowDialog();
 		}
 
-		private void menuItemSaveContentPage_Click(object sender, EventArgs e)
-		{
-			var res = MessageBox.Show("Do you want to include current Template as loader?", "Including?", MessageBoxButtons.YesNoCancel);
-			string str = res.ToString();
-
-			if (str == "Yes")
-			{
-				saveFileDialog.AddExtension = true;
-				saveFileDialog.CheckPathExists = true;
-				saveFileDialog.CheckFileExists = false;
-				saveFileDialog.DefaultExt = "rmtp";
-				saveFileDialog.FileName = currentContent.Name;
-				saveFileDialog.Filter = "Rompacter Template files (*.rmtp)|*.rmtp|All files (*.*)|*.*";
-				saveFileDialog.Title = "Save Template";
-				saveFileDialog.FileOk += SaveFileDialogSaveTemplateNow_FileOk;
-
-				saveFileDialog.ShowDialog();
-			}
-			else if (str == "No")
-			{
-				openFileDialog.AddExtension = true;
-				openFileDialog.CheckPathExists = true;
-				openFileDialog.CheckFileExists = true;
-				openFileDialog.Multiselect = false;
-				openFileDialog.DefaultExt = "rmtp";
-				openFileDialog.FileName = currentContent.Name;
-				saveFileDialog.Filter = "Rompacter Template files (*.rmtp)|*.rmtp|All files (*.*)|*.*";
-				saveFileDialog.Title = "Open Template";
-				openFileDialog.FileOk += OpenFileDialogOpenTemplateNow_FileOk;
-			}
-		}
-
 		private void OpenFileDialogSaveContentPage_FileOk(object? sender, System.ComponentModel.CancelEventArgs e)
 		{
-
+			FileManagerContentPage.TemplateInstance = currentTemplate;
 			FileManagerContentPage.Save(saveFileDialog.FileName, resPath, currentContent);
 			saveFileDialog.FileOk -= OpenFileDialogSaveContentPage_FileOk;
 		}
