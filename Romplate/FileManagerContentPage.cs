@@ -38,6 +38,7 @@ namespace Romplate
 			{
 				using (BinaryWriter writer = new BinaryWriter(file))
 				{
+
 					for (int d = 0; d < Template.DaysInWeek; d++)
 					{
 						TemplateInstance.CurrentDay = d;
@@ -70,6 +71,7 @@ namespace Romplate
 		public static ContentPage Load(string path)
 		{
 			ContentPage contentPage = new ContentPage();
+			TemplateInstance = new Template();
 
 			using (FileStream file = new FileStream(path, FileMode.Open))
 			{
@@ -80,10 +82,8 @@ namespace Romplate
 						TemplateInstance.CurrentDay = d;
 						int lessonCount = reader.ReadInt32();
 
-						var day = contentPage.GetDay(d);
 						for (int l = 0; l < lessonCount; l++)
 						{
-							day.CreateHomework();
 							TemplateInstance.CreateLesson();
 							TemplateInstance.SetName(l, reader.ReadString());
 							TemplateInstance.SetLink(l, reader.ReadString());
