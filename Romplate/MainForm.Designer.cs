@@ -141,15 +141,15 @@
 			// menuItemNewContentPage
 			// 
 			menuItemNewContentPage.Name = "menuItemNewContentPage";
-			menuItemNewContentPage.Size = new Size(146, 22);
+			menuItemNewContentPage.Size = new Size(180, 22);
 			menuItemNewContentPage.Text = "Content Page";
 			menuItemNewContentPage.Click += menuItemNewContentPage_Click;
 			// 
 			// templateToolStripMenuItem
 			// 
 			templateToolStripMenuItem.Name = "templateToolStripMenuItem";
-			templateToolStripMenuItem.Size = new Size(146, 22);
-			templateToolStripMenuItem.Text = "Vi";
+			templateToolStripMenuItem.Size = new Size(180, 22);
+			templateToolStripMenuItem.Text = "Template";
 			templateToolStripMenuItem.Click += templateToolStripMenuItem_Click;
 			// 
 			// saveToolStripMenuItem

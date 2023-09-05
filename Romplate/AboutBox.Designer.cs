@@ -102,6 +102,7 @@
 			labelVersion.TabIndex = 0;
 			labelVersion.Text = "Version";
 			labelVersion.TextAlign = ContentAlignment.MiddleLeft;
+			labelVersion.Click += labelVersion_Click;
 			// 
 			// labelCopyright
 			// 
